@@ -1,0 +1,127 @@
+	var controls = new (function () {
+		this.src1 = "./assets/texture/MaryOculus.webm";
+	})();
+	const gui = new GUI();
+	gui.add(controls, "src1", {
+		Stopped: "./assets/texture/MaryOculus.webm",
+		Slow: "./assets/texture/MaryOculus.webm",
+		Fast: "./assets/texture/MaryOculus.webm",
+	});
+	const video = document.getElementById("video");
+	// video.play();
+	video.src = controls.src1;
+	var texture = new VideoTexture(video);
+	const body = new MeshBasicMaterial({
+		map: texture,
+	});
+
+
+
+
+const gui = new GUI();
+	const parameters = [
+		{ check: false, src: "./assets/texture/MaryOculus.webm" },
+		{ check: false, src: "./assets/texture/pano.mp4" },
+	];
+
+	var first = gui.addFolder("video");
+	var pos1 = first
+		.add(parameters[0], "check")
+		.name("Girl")
+		.listen()
+		.onChange(function () {
+			setChecked(0);
+		});
+	var pos2 = first
+		.add(parameters[1], "check")
+		.name("man")
+		.listen()
+		.onChange(function () {
+			setChecked(1);
+		});
+	function setChecked(prop) {
+		for (let param in parameters) {
+			parameters[param].check = false;
+		}
+		parameters[prop].check = true;
+		// const video = document.getElementById("video");
+		video.src = parameters[prop].src;
+	}
+
+const pickOne = {
+		src: false,
+		B: false,
+	};
+	gui
+		.add(pickOne, "A")
+		.name("Video A")
+		.listen()
+		.onChange(function () {
+			const video = document.getElementById("video");
+			video.src = "./assets/texture/MaryOculus.webm";
+			render();
+		});
+
+	gui
+		.add(pickOne, "B")
+		.name("Video B")
+		.listen()
+		.onChange(function () {
+			const video = document.getElementById("video");
+			video.src = "./assets/texture/pano.mp4";
+			render();
+		});
+	var texture = new VideoTexture(video);
+	const body = new MeshBasicMaterial({
+		map: texture,
+	});
+
+
+const gui = new GUI();
+	const pickOne = {
+		A: false,
+		B: false,
+	};
+
+	const video = document.getElementById("video");
+
+	gui
+		.add(pickOne, "A")
+		.name("Video A")
+		.listen()
+		.onChange(function () {
+			if ((pickOne.A = true)) {
+				document.getElementById("video").src = null;
+				video.src = "./assets/texture/MaryOculus.webm";
+				video.play();
+			} else if ((pickOne.A = false)) {
+				video.pause();
+			}
+		});
+
+	gui
+		.add(pickOne, "B")
+		.name("Video B")
+		.listen()
+		.onChange(function () {
+			// body.map = VideoTexture;
+			document.getElementById("video").src = null;
+			video.src = "./assets/texture/pano.mp4";
+			video.play();
+		});
+
+
+	const options = {
+		mesh: {
+			girl: "./assets/texture/MaryOculus.webm",
+			man: "./assets/texture/pano.mp4",
+		},
+	};
+
+	const video = document.getElementById("video");
+
+	gui.add(options, "video", options.mesh).onChange(function (value) {
+		document.getElementById("video").src = null;
+		video.src = value;
+		video.play();
+	});

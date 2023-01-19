@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="app">
+        <div>hello world
+            <p>{{name}}
+            <p>
+
+        </div>
+        <!-- v-bind =:(縮寫) -->
+        <a :href="link">link</a>
+        <!-- v-for 迭代陣列中的元素 index=迭代-->
+        <li v-for="(todo,index) in todos">
+            <input type="checkbox" :checked="todo.complete">{{todo.content}}
+        </li>
+        <!-- if else--必須相鄰使用>
+        <p v-if="books.length===0">No</p>
+        <h2 v-else-if="books.length===1">{{books[0]}}</h2>
+        <ul v-else>
+            <li v-for="book in books">{{book}}</li>
+        </ul>
+        <!-- v-show 判斷式的表達 display:none -->
+        <p v-show="books.length===0">No</p>
+        <h2 v-show="books.length===1">{{books[0]}}</h2>
+        <ul v-show="books.length>1">
+            <li v-for="book in books">{{book}}</li>
+        </ul>
+
+        <!--v-on:click= @click !!computed -->
+        <div class="question">
+            <p>Question</p>
+            <p v-show="showAnswer" class="answer">
+                Answer
+            </p>
+            <button @click="showAnswer=!showAnswer">{{label}}</button>
+        </div>
+        <!--method -->
+        <div class="question">
+            <p>Question</p>
+            <p v-show="showAnswer" class="answer">
+                Answer
+            </p>
+            <button @click='toggleAnswer'>{{label}}</button>
+        </div>
+    </div>
+    <script src="./index.js"></script>
+</body>
+
+</html>
